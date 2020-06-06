@@ -1,0 +1,15 @@
+.list-entry {
+    margin-top: 15px;
+}
+
+.expired {
+    background-color: salmon;
+}
+
+.due {
+    background-color: lightblue;
+}
+
+.completed {
+    background-color: lightgreen;
+}
