@@ -7,7 +7,6 @@ class ToDoList extends Component {
     render() {
         return (
             <Aux>
-                <div>AddForm</div>
                 <List />
             </Aux>
         );

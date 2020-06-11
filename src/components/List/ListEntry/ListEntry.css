@@ -13,3 +13,20 @@
 .completed {
     background-color: lightgreen;
 }
+
+.expired-btn, .completed-btn {
+    display: none;
+}
+
+.pr-text {
+    text-transform: uppercase;
+}
+
+.high {
+    color: red;
+    font-weight: bold;
+}
+
+.moderate {
+    color: black;
+}
