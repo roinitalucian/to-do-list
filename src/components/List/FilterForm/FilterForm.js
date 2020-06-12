@@ -12,18 +12,18 @@ class FilterForm extends Component {
         return(
             <Aux>
             <div className='container'>
-                <div className='d-flex justify-content-end'>
+                <div className='d-md-flex justify-content-end'>
                     <div>
                         <input type='checkbox' id='showExpired' className='checkLabel' onChange={this.props.showExpiredClick} />
-                        <label htmlFor='showExpired' className='checkLabel'>Hide expired</label><br />
+                        <label htmlFor='showExpired' className='checkLabel labelHide'>Hide expired</label><br />
                     </div>
                     <div>
                         <input type='checkbox' id='showCompleted' className='checkLabel' onChange={this.props.showCompletedClick} />
-                        <label htmlFor='showCompleted' className='checkLabel'>Hide completed</label><br />
+                        <label htmlFor='showCompleted' className='checkLabel labelHide'>Hide completed</label><br />
                     </div>
                     <div>
-                        <label htmlFor='sortBy' className='checkLabel'>Sort by:</label>
-                        <select id='sortBy' className='checkLabel' onChange={this.props.sort}>
+                        <label htmlFor='sortBy' className='checkLabel labelHide'>Sort by:</label>
+                        <select id='sortBy' className='checkLabel labelHide' onChange={this.props.sort}>
                             <option value='default'>default</option>
                             <option value='date'>due date</option>
                             <option value='priority'>priority</option>

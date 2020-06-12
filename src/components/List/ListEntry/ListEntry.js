@@ -85,7 +85,7 @@ class ListEntry extends Component {
                                 </div>
                             </div>
                             <p align='right'>Priority: <span className={'pr-text ' + this.props.priority}>{this.props.priority}</span></p>
-                            <button type='button' className={'btn ' + this.props.status + '-btn'} onClick={this.props.clickComplete}>
+                            <button type='button' className={'btnSize btn ' + this.props.status + '-btn'} onClick={this.props.clickComplete}>
                                 Mark as completed
                             </button>
                         </div>
@@ -132,10 +132,10 @@ class ListEntry extends Component {
                             </select>
                              </p>
                              <div className='marginRightZero'>
-                                <button type='button' className={'marginRight btn'} onClick={this.exitEditMode}>
+                                <button type='button' className={'btnSize marginRight btn'} onClick={this.exitEditMode}>
                                     Cancel
                                 </button>
-                                <input type='submit' className={'btn'} value='Save' />
+                                <input type='submit' className={'btnSize btn'} value='Save' />
                              </div>
                         </div>
                     </div>

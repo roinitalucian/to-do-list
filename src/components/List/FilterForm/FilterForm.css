@@ -5,3 +5,9 @@
 /* .checkBoxMargin {
     merg
 } */
+
+@media only screen and (max-width: 768px) {
+    .labelHide {
+        font-size: 1.8vh;
+    }
+}
