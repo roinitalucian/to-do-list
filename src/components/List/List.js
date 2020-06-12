@@ -3,6 +3,7 @@ import Aux from '../../utils/Wrapper'
 import ListEntry from './ListEntry/ListEntry';
 import FilterForm from './FilterForm/FilterForm';
 import AddForm from './AddForm/AddForm';
+import ls from 'local-storage';
 
 class List extends Component {
     
@@ -15,21 +16,22 @@ class List extends Component {
 
         showExpired : true,
         showCompleted : true,
-        time: new Date(Date.now())
+        time: new Date(Date.now()),
+        idMax: 0
     }
-
-    idMax = 0;
 
     deleteEntryHandler = (index) => {
         const toDos = [...this.state.toDos];
         toDos.splice(index, 1);
         this.setState({toDos: toDos});
+        ls.set('toDos', toDos);
     }
 
     completeHandler = (index) => {
         const toDos = [...this.state.toDos];
         toDos[index].status = 'completed';
         this.setState({toDos: toDos});
+        ls.set('toDos', toDos);
     }
 
     showExpiredHandler = () => {
@@ -67,7 +69,7 @@ class List extends Component {
     }
 
     sortHandler = (event) => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         const toDos = [...this.state.toDos];
         switch (event.target.value) {
             case 'priority':
@@ -81,17 +83,20 @@ class List extends Component {
                 break;
         }
         this.setState({toDos: toDos});
+        ls.set('toDos', toDos);
     }
 
     addHandler = (event) => {
         event.preventDefault();
         let new_title = event.target.title.value;
         let new_description = event.target.description.value;
-        let new_date = new Date(event.target.date.value);
+        let new_date = event.target.date.value ;
         let new_priority = event.target.priority.value;
         const toDos = [...this.state.toDos];
-        toDos.unshift({ id: (this.idMax++), title: new_title, description: new_description, deadline: new_date, priority: new_priority, status: 'due' });
-        this.setState({toDos: toDos});
+        toDos.unshift({ id: (this.state.idMax), title: new_title, description: new_description, deadline: new_date, priority: new_priority, status: 'due' });
+        this.setState({toDos: toDos, idMax: (this.state.idMax + 1)});
+        ls.set('toDos', toDos);
+        ls.set('idMax', this.state.idMax);
     }
 
     editEntryHandler = (index) => (event) => {
@@ -112,11 +117,12 @@ class List extends Component {
             toDos[index].status = 'due';
         }
         this.setState({toDos: toDos});
+        ls.set('toDos', toDos);
         this.updateList();
     }
 
     checkExpired = (item, index) => {
-        if (item.deadline < new Date(this.state.time)) {
+        if (new Date(item.deadline) < new Date(this.state.time)) {
             item.status = 'expired';
         }
     }
@@ -124,6 +130,7 @@ class List extends Component {
     updateList = () => {
         const toDos = [...this.state.toDos];
         toDos.forEach(this.checkExpired);
+        ls.set('toDos', toDos);
         return toDos;
     }
 
@@ -152,6 +159,7 @@ class List extends Component {
 
         return (
             <Aux>
+                {/* {new Date(this.state.time).toString()} */}
                 <AddForm addClick={this.addHandler} />
                 <FilterForm
                 showExpiredClick = {this.showExpiredHandler}
@@ -164,6 +172,7 @@ class List extends Component {
     }
 
     componentDidMount() {
+        this.setState({toDos: ls.get('toDos') || [], showExpired: true, showCompleted: true, idMax: ls.get('idMax') + 1 || 0});
         this.interval = setInterval(() => this.setState({ time: new Date(Date.now()), toDos: this.updateList() }), 10000);
     }
 

@@ -43,7 +43,7 @@ class ListEntry extends Component {
         }
 
         str = str + d.getMinutes();
-
+        // console.log(d);
         // console.log(str);
         // console.log('-' + d.getDate());
         // console.log('T' + d.getHours());
@@ -59,7 +59,7 @@ class ListEntry extends Component {
     }
 
     render() {
-
+        let formattedDate = new Date(this.props.deadline);
         let viewMode = <Aux>
         <div className='container'>
             <div className={'card list-entry ' + this.props.status}>
@@ -72,7 +72,7 @@ class ListEntry extends Component {
                             <p className='card-text'>
                                 {this.props.description}
                             </p>
-                            <p>{this.props.deadline.toLocaleDateString()} {this.props.deadline.toLocaleTimeString()}</p>
+                            <p>{formattedDate.toLocaleDateString()} {formattedDate.toLocaleTimeString()}</p>
                         </div>
                         <div className='ml-auto'>
                             <div className='dropdown'>
@@ -110,7 +110,7 @@ class ListEntry extends Component {
                             </p>
                             <p>
                                 <input className='form-control form-control-sm' type='datetime-local'
-                                id='dateSelect' name='date' defaultValue={this.formatDate(this.props.deadline)} />
+                                id='dateSelect' name='date' defaultValue={this.formatDate(formattedDate)} />
                             </p>
                         </div>
                         <div className='ml-auto'>

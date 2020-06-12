@@ -24,10 +24,10 @@ class AddForm extends Component {
             <div className='container'>
                 <div id='demo' className='collapse'>
                     <div className='form-group'>
-                        <input type='text' className='form-control' placeholder='Title' name='title' />
+                        <input type='text' className='form-control' placeholder='Title' name='title' required />
                     </div>
                     <div className='form-group'>
-                        <textarea rows='4' className='form-control' placeholder='Description' name='description' />
+                        <textarea rows='4' className='form-control' placeholder='Description' name='description' required />
                     </div>
                     <div className='form-group'>
                         <div className='form-inline'>
@@ -40,7 +40,7 @@ class AddForm extends Component {
                             </select>
 
                             <label htmlFor='dateSelect' className='marginRight'>Due date:</label>
-                            <input className='form-control form-control-sm' type='datetime-local' id='dateSelect' name='date' />
+                            <input className='form-control form-control-sm' type='datetime-local' id='dateSelect' name='date' required />
                         </div>
                     </div>
 
