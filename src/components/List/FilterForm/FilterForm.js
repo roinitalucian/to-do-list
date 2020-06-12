@@ -24,9 +24,9 @@ class FilterForm extends Component {
                     <div>
                         <label htmlFor='sortBy' className='checkLabel'>Sort by:</label>
                         <select id='sortBy' className='checkLabel' onChange={this.props.sort}>
-                        <option value='default'>default</option>
-                        <option value='date'>due date</option>
-                        <option value='priority'>priority</option>
+                            <option value='default'>default</option>
+                            <option value='date'>due date</option>
+                            <option value='priority'>priority</option>
                         </select>
                     </div>    
                 </div>

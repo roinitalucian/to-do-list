@@ -30,3 +30,16 @@
 .moderate {
     color: black;
 }
+
+.marginLeft {
+    margin-left: 8px;
+}
+
+.marginRight {
+    margin-right: 12px;
+}
+
+.marginRightZero {
+    position: absolute;
+    right: 2%;
+}
