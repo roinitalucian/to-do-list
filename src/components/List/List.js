@@ -123,7 +123,7 @@ class List extends Component {
     }
 
     checkExpired = (item, index) => {
-        if (new Date(item.deadline) < new Date(this.state.time)) {
+        if (new Date(item.deadline) < new Date(this.state.time) && item.status === 'due') {
             item.status = 'expired';
         }
     }
