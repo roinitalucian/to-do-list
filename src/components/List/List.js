@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Aux from '../../utils/Wrapper'
+import Aux from '../../utils/Wrapper';
+import './List.css';
 import ListEntry from './ListEntry/ListEntry';
 import FilterForm from './FilterForm/FilterForm';
 import AddForm from './AddForm/AddForm';
@@ -136,6 +137,7 @@ class List extends Component {
 
     render() {
 
+        // maps anonymous function over the entries array to print all of them
         let list = this.state.toDos.map((entry, index) => {
             if (this.state.showExpired === false && entry.status === 'expired') {
                 return null;
@@ -172,7 +174,10 @@ class List extends Component {
     }
 
     componentDidMount() {
+        // the state is stored locally
         this.setState({toDos: ls.get('toDos') || [], showExpired: true, showCompleted: true, idMax: ls.get('idMax') + 1 || 0});
+
+        // updates the state every 10 seconds
         this.interval = setInterval(() => this.setState({ time: new Date(Date.now()), toDos: this.updateList() }), 10000);
     }
 

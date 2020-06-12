@@ -16,6 +16,7 @@ class ListEntry extends Component {
         this.setState({editMode: false});
     }
 
+    // this function was needed in order to properly parse the dates
     formatDate = (d) => {
         // console.log(d.getFullYear());
         let str = d.getFullYear() +'-';
@@ -145,6 +146,7 @@ class ListEntry extends Component {
         </form>
         </Aux>;
 
+        // editMode decides which of the 2 modes described above is selected
         let selectedMode = viewMode;
         if (this.state.editMode) {
             selectedMode = editMode;
