@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Aux'
+import Aux from '../../utils/Wrapper'
 import ListEntry from './ListEntry/ListEntry';
 import FilterForm from './FilterForm/FilterForm';
 import AddForm from './AddForm/AddForm';
@@ -14,7 +14,8 @@ class List extends Component {
         ],
 
         showExpired : true,
-        showCompleted : true
+        showCompleted : true,
+        time: new Date(Date.now())
     }
 
     idMax = 0;
@@ -95,8 +96,8 @@ class List extends Component {
 
     editEntryHandler = (index) => (event) => {
         event.preventDefault();
-        console.log(event);
-        console.log(index);
+        // console.log(event);
+        // console.log(index);
 
         let new_title = event.target.title.value;
         let new_description = event.target.description.value;
@@ -107,7 +108,23 @@ class List extends Component {
         toDos[index].description = new_description;
         toDos[index].deadline = new_date;
         toDos[index].priority = new_priority;
+        if (new_date > new Date(this.state.time) && toDos[index].status === 'expired') {
+            toDos[index].status = 'due';
+        }
         this.setState({toDos: toDos});
+        this.updateList();
+    }
+
+    checkExpired = (item, index) => {
+        if (item.deadline < new Date(this.state.time)) {
+            item.status = 'expired';
+        }
+    }
+
+    updateList = () => {
+        const toDos = [...this.state.toDos];
+        toDos.forEach(this.checkExpired);
+        return toDos;
     }
 
     render() {
@@ -136,7 +153,6 @@ class List extends Component {
         return (
             <Aux>
                 <AddForm addClick={this.addHandler} />
-
                 <FilterForm
                 showExpiredClick = {this.showExpiredHandler}
                 showCompletedClick = {this.showCompletedHandler}
@@ -145,6 +161,14 @@ class List extends Component {
                 {list}
             </Aux>
         );
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.setState({ time: new Date(Date.now()), toDos: this.updateList() }), 10000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
 };

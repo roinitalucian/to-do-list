@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../utils/Wrapper';
 
 import List from '../../components/List/List'
 

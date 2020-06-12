@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ListEntry.css'
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../utils/Wrapper';
 
 class ListEntry extends Component {
 
@@ -26,19 +26,19 @@ class ListEntry extends Component {
 
         str = str + (d.getMonth() + 1) + '-';
 
-        if (d.getDate() < 9) {
+        if (d.getDate() < 10) {
             str = str + '0';
         }
 
         str = str + d.getDate() + 'T';
 
-        if (d.getHours() < 9) {
+        if (d.getHours() < 10) {
             str = str + '0';
         }
 
         str = str + d.getHours() + ':';
 
-        if (d.getMinutes() < 9) {
+        if (d.getMinutes() < 10) {
             str = str + '0';
         }
 

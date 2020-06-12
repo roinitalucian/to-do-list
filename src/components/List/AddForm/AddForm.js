@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddForm.css'
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../utils/Wrapper';
 
 class AddForm extends Component {
 
@@ -14,10 +14,6 @@ class AddForm extends Component {
             b.className = 'fa fa-plus-square';
             b2.style.display = 'none';
         }
-    }
-
-    submitForm = () => {
-        // document.getElementById('addForm').submit();
     }
 
     render() {
@@ -51,9 +47,9 @@ class AddForm extends Component {
                 </div>
                 <div className='form-group'>
                     <i type='button' className='fa fa-plus-square' aria-hidden='true' data-toggle='collapse'
-                    data-target='#demo' style={{fontSize:7+'vh'}} onClick={this.reverseButton} id='plusButton' />
-                    <input type='submit' className='fa fa-plus-square' aria-hidden='true'
-                    style={{fontSize:7+'vh'}}  id='submitButton' />
+                    data-target='#demo' style={{fontSize:5+'vw'}} onClick={this.reverseButton} id='plusButton' />
+                    <button type='submit' className='fa fa-plus-square' aria-hidden='true'
+                    style={{fontSize:5+'vw'}}  id='submitButton' value='add'/>
                 </div>
             </div>
             </form>

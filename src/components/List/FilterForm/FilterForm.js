@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './FilterForm.css'
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../utils/Wrapper';
 
 class FilterForm extends Component {
 
